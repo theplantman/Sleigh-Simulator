@@ -1,17 +1,21 @@
-local DataFolder = Instance.new("Folder",Player)
-DataFolder.Name = "DataFolder"
-DataFolder.Archivable = false
-local Cash = Instance.new("IntValue",DataFolder)
-Cash.Name = "Cash"
-Cash.Archivable = false
-local SleighEXP = Instance.new("IntValue",DataFolder)
-SleighEXP.Name = "SleighEXP"
-SleighEXP.Archivable = false
-local Data
-local Success, Error = pcall(function()
-	Data = DataStore:GetAsync(Player.UserId)
-end)
-if Success then
-	Cash.Value = Data.Cash
-  SleighEXP.Value = Data.SleighExp
-end
+return {
+	GetAsync = function(Player,DataStore)
+		local DataFolder = Instance.new("Folder",Player)
+		DataFolder.Name = "DataFolder"
+		DataFolder.Archivable = false
+		local Cash = Instance.new("IntValue",DataFolder)
+		Cash.Name = "Cash"
+		Cash.Archivable = false
+		local SleighEXP = Instance.new("IntValue",DataFolder)
+		SleighEXP.Name = "SleighEXP"
+		SleighEXP.Archivable = false
+		local Data
+		local Success, Error = pcall(function()
+			Data = DataStore:GetAsync(Player.UserId)
+		end)
+		if Success then
+			Cash.Value = Data.Cash
+		  	SleighEXP.Value = Data.SleighExp
+		end
+	end;
+}
